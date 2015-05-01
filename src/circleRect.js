@@ -8,14 +8,14 @@ var pointCircle = require('./pointCircle');
  * @param  {[type]} response [description]
  * @return {[type]}          [description]
  */
-module.exports = function ( circle, rect, response ) {
+module.exports = function (circle, rect, response) {
 
-    var near = closestPointRect( circle.position, rect );
+    var near = closestPointRect(circle.position, rect);
 
-    if ( pointCircle( near, circle ) ) {
+    if (pointCircle(near, circle)) {
 
-        if(response) {
-            var distance = circle.position.distanceTo( near );
+        if (response) {
+            var distance = circle.position.distanceTo(near);
             response.point = near;
             response.normal = circle.position._subtract(near).normalize();
             response.depth = circle.radius - distance;
