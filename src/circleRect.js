@@ -15,7 +15,9 @@ module.exports = function (circle, rect, response) {
     if (pointCircle(near, circle)) {
 
         if (response) {
+
             var distance = circle.position.distanceTo(near);
+
             response.point = near;
             response.normal = circle.position._subtract(near).normalize();
             response.depth = circle.radius - distance;
