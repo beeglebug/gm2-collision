@@ -6,28 +6,29 @@
  */
 module.exports = function (point, rect) {
 
-    //@todo use temp
+    // @todo use temp vec
     var closest = point.copy();
 
-    if (point.x < rect.position.x) {
+    var top = rect.position.y;
+    var left = rect.position.x;
+    var right = left + rect.width;
+    var bottom = top + rect.height;
 
-        closest.x = rect.position.x;
+    // clamp to inside?
+    var x = Math.min(point.x, Math.max(left, right));
+    var y = Math.min(point.y, Math.max(top, bottom));
 
-    } else if (point.x > rect.position.x + rect.width) {
+    var dl = Math.abs(x - left);
+    var dr = Math.abs(x - right);
+    var dt = Math.abs(y - top);
+    var db = Math.abs(y - bottom);
 
-        closest.x = rect.position.x + rect.width;
+    var min = Math.min(dl, dr, dt, db);
 
-    }
-
-    if (point.y < rect.position.y) {
-
-        closest.y = rect.position.y;
-
-    } else if (point.y > rect.position.y + rect.height) {
-
-        closest.y = rect.position.y + rect.height;
-
-    }
+    if(min == dt) { closest.set(x, top); }
+    else if(min == db) { closest.set(x, bottom); }
+    else if(min == dl) { closest.set(left, y); }
+    else { closest.set(right, y); }
 
     return closest;
 };

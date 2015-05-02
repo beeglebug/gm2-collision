@@ -1,5 +1,6 @@
 var closestPointRect = require('./closestPointRect');
 var pointCircle = require('./pointCircle');
+var pointRect = require('./pointRect');
 
 /**
  * Check collision between a Circle and a Rect
@@ -10,22 +11,29 @@ var pointCircle = require('./pointCircle');
  */
 module.exports = function (circle, rect, response) {
 
-    var near = closestPointRect(circle.position, rect);
+    // quick check for center inside rect
+    var collision = pointRect(circle.position, rect);
 
-    if (pointCircle(near, circle)) {
+    if(!collision) {
 
-        if (response) {
+        var near = closestPointRect(circle.position, rect);
 
-            var distance = circle.position.distanceTo(near);
+        if (!pointCircle(near, circle)) {
 
-            response.point = near;
-            response.normal = circle.position._subtract(near).normalize();
-            response.depth = circle.radius - distance;
+            return false;
         }
-
-        return true;
 
     }
 
-    return false;
+    if (response) {
+
+        var distance = circle.position.distanceTo(near);
+
+        response.point = near;
+        response.normal = circle.position._subtract(near).normalize();
+        response.depth = circle.radius - distance;
+
+    }
+
+    return true;
 };

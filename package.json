@@ -1,7 +1,7 @@
 {
   "name": "gm2-collision",
   "version": "0.0.1",
-  "description": "2d geometry - collision detection and response",
+  "description": "2D Geometry - Collision detection and response",
   "main": "index.js",
   "scripts": {
     "test": "mocha"
