@@ -28,6 +28,17 @@ module.exports = function () {
         expect(collision).to.be.false;
     });
 
+    // 'on the edge' is false
+    it('handles edge cases', function () {
+
+        var point = new Vector2(5,0);
+        var circle = new Circle(5);
+
+        var collision = Collision.pointCircle(point, circle);
+
+        expect(collision).to.be.false;
+    });
+
     it('sets response properties', function () {
 
         var point = new Vector2(5,5);
