@@ -27,8 +27,10 @@ module.exports = function (circle, rect, response) {
 
     if (response) {
 
+        //@todo near?
         var distance = circle.position.distanceTo(near);
 
+        //@todo using too many vector here, use setters instead
         response.point = near;
         response.normal = circle.position._subtract(near).normalize();
         response.depth = circle.radius - distance;

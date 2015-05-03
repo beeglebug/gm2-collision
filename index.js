@@ -1,11 +1,12 @@
 module.exports = {
 
-    Response : require('./src/Response'),
+    circleCircle : require('./src/circleCircle'),
     circleRect : require('./src/circleRect'),
-    closestPointRect : require('./src/closestPointRect'),
     closestPointCircle : require('./src/closestPointCircle'),
+    closestPointRect : require('./src/closestPointRect'),
     pointCircle : require('./src/pointCircle'),
-    pointRect : require('./src/pointRect')
+    pointRect : require('./src/pointRect'),
+    Response : require('./src/Response')
 
 };
 
