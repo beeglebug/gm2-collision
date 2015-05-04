@@ -41,7 +41,7 @@ module.exports = function () {
 
     it('sets response properties', function () {
 
-        var point = new Vector2(5,5);
+        var point = new Vector2(5,8);
         var circle = new Circle(10);
 
         var response = new Response();
@@ -49,11 +49,11 @@ module.exports = function () {
         var collided = Collision.pointCircle(point, circle, response);
 
         expect(collided).to.be.true;
-        expect(response.point.x).to.equal(7.071067811865475);
-        expect(response.point.y).to.equal(7.071067811865475);
-        expect(response.normal.x).to.equal(0.7071067811865475);
-        expect(response.normal.y).to.equal(0.7071067811865475);
-        expect(response.depth).to.equal(2.9289321881345245);
+        expect(response.point.x).to.equal(5);
+        expect(response.point.y).to.equal(8);
+        expect(response.normal.x).to.equal(0.52999894000318);
+        expect(response.normal.y).to.equal(0.847998304005088);
+        expect(response.depth).to.equal(0.5660188679433968);
     });
 
 };

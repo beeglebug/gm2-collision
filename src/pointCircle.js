@@ -17,8 +17,8 @@ module.exports = function (point, circle, response) {
 
         if(response) {
 
-            closestPointCircle(point, circle, response.point);
-            response.normal.set(response.point).normalize();
+            response.point.set(point);
+            response.normal.set(point).normalize();
             response.depth = circle.radius - Math.sqrt((dx * dx) + (dy * dy));
         }
 

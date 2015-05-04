@@ -1,34 +1,36 @@
+var Vector2 = require('gm2-vector2');
+
 /**
  * Determine the closest point on a rect to another point
  * @param  {[type]} point [description]
  * @param  {[type]} rect  [description]
  * @return {[type]}       [description]
  */
-module.exports = function (point, rect) {
+module.exports = function (point, rect, vector) {
 
-    // @todo use temp vec
-    var closest = point.copy();
+    if(!vector) { vector =  new Vector2(); }
 
-    var top = rect.position.y;
-    var left = rect.position.x;
-    var right = left + rect.width;
-    var bottom = top + rect.height;
+    vector.set(point);
 
-    // clamp to inside?
-    var x = Math.min(point.x, Math.max(left, right));
-    var y = Math.min(point.y, Math.max(top, bottom));
+    if( point.x < rect.position.x ) {
 
-    var dl = Math.abs(x - left);
-    var dr = Math.abs(x - right);
-    var dt = Math.abs(y - top);
-    var db = Math.abs(y - bottom);
+        vector.x = rect.position.x;
 
-    var min = Math.min(dl, dr, dt, db);
+    } else if ( point.x > rect.position.x + rect.width ) {
 
-    if(min == dt) { closest.set(x, top); }
-    else if(min == db) { closest.set(x, bottom); }
-    else if(min == dl) { closest.set(left, y); }
-    else { closest.set(right, y); }
+        vector.x = rect.position.x + rect.width;
 
-    return closest;
+    }
+
+    if( point.y < rect.position.y ) {
+
+        vector.y = rect.position.y;
+
+    } else if ( point.y > rect.position.y + rect.height ) {
+
+        vector.y = rect.position.y + rect.height;
+
+    }
+
+    return vector;
 };
