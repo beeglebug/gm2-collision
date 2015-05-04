@@ -1,6 +1,10 @@
+var Vector2 = require('gm2-vector2');
 var closestPointRect = require('./closestPointRect');
 var pointCircle = require('./pointCircle');
 var pointRect = require('./pointRect');
+
+// temp vector
+var _v1 = new Vector2();
 
 /**
  * Check collision between a Circle and a Rect
@@ -16,7 +20,7 @@ module.exports = function (circle, rect, response) {
 
     if(!collision) {
 
-        var near = closestPointRect(circle.position, rect);
+        var near = closestPointRect(circle.position, rect, _v1);
 
         if (!pointCircle(near, circle)) {
 
