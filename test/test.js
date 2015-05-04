@@ -2,6 +2,7 @@ var describe = require('mocha').describe;
 
 describe('circleCircle', require('./circleCircle'));
 describe('circleRect', require('./circleRect'));
+describe('rectRect', require('./rectRect'));
 describe('closestPointCircle', require('./closestPointCircle'));
 describe('closestPointRect', require('./closestPointRect'));
 describe('pointCircle', require('./pointCircle'));

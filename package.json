@@ -22,7 +22,7 @@
   },
   "dependencies": {
     "gm2-circle": "0.0.1",
-    "gm2-rect": "0.0.1",
+    "gm2-rect": "0.0.2",
     "gm2-vector2": "0.0.1"
   }
 }
