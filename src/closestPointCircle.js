@@ -12,7 +12,7 @@ module.exports = function( point, circle, vector ) {
 
     if(!vector) { vector =  new Vector2(); }
 
-    vector.set(point.x, point.y);
+    vector.set(point);
 
     // check if it's inside first
     if(pointCircle(point, circle)) {
