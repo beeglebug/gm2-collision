@@ -12,29 +12,47 @@ module.exports = function () {
         var rect1 = new Rect(5, 5);
         var rect2 = new Rect(10, 10);
 
+        // left edge
+        rect1.position.set(-3, 2);
+        expect( Collision.rectRect(rect1, rect2) ).to.be.true;
+
+        // right edge
         rect1.position.set(9, 3);
-        var collision1 = Collision.rectRect(rect1, rect2);
+        expect( Collision.rectRect(rect1, rect2) ).to.be.true;
 
+        // top edge
+        rect1.position.set(3, -2);
+        expect( Collision.rectRect(rect1, rect2) ).to.be.true;
+
+        // bottom edge
+        rect1.position.set(8, 9);
+        expect( Collision.rectRect(rect1, rect2) ).to.be.true;
+
+        // inside
         rect1.position.set(2, 2);
-        var collision2 = Collision.rectRect(rect1, rect2);
-
-        expect(collision1).to.be.true;
-        expect(collision2).to.be.true;
+        expect( Collision.rectRect(rect1, rect2) ).to.be.true;
     });
 
     it('detects non collisions', function () {
 
-        var rect1 = new Rect(5, 5);
-        var rect2 = new Rect(10, 10);
+        var rect1 = new Rect(2, 2);
+        var rect2 = new Rect(4, 4);
 
-        rect1.position.set(10, 0);
-        var collision1 = Collision.rectRect(rect1, rect2);
+        // left edge
+        rect1.position.set(-2, 1);
+        expect( Collision.rectRect(rect1, rect2) ).to.be.false;
 
-        rect1.position.set(0, 10);
-        var collision2 = Collision.rectRect(rect1, rect2);
+        // right edge
+        rect1.position.set(4, 1);
+        expect( Collision.rectRect(rect1, rect2) ).to.be.false;
 
-        expect(collision1).to.be.false;
-        expect(collision2).to.be.false;
+        // top edge
+        rect1.position.set(1, -2);
+        expect( Collision.rectRect(rect1, rect2) ).to.be.false;
+
+        // bottom edge
+        rect1.position.set(1, 4);
+        expect( Collision.rectRect(rect1, rect2) ).to.be.false;
     });
 
     it('sets response properties', function () {
@@ -54,6 +72,28 @@ module.exports = function () {
 
         // lol precision
         expect(response.depth).to.be.closeTo(0.6, 0.00000000001);
+
+        // left edge
+        rect1.position.set(-2, 1);
+        expect( Collision.rectRect(rect1, rect2, response) ).to.be.true;
+
+        // right edge
+        rect1.position.set(4, 1);
+        expect( Collision.rectRect(rect1, rect2, response) ).to.be.true;
+
+        // top edge
+        rect1.position.set(1, -2);
+        expect( Collision.rectRect(rect1, rect2, response) ).to.be.true;
+
+        // bottom edge
+        rect1.position.set(1, 4);
+        expect( Collision.rectRect(rect1, rect2, response) ).to.be.true;
+
+        // inside
+        rect1.position.set(1, 1);
+        expect( Collision.rectRect(rect1, rect2, response) ).to.be.true;
+
+
     });
 
 };
